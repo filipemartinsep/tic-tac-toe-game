@@ -41,6 +41,9 @@ function calculateWinner(squares) {
       return squares[a];
     }
   }
+  if (!squares.includes(null)) {
+    return 'Draw';
+  }
   return null;
 }
 
@@ -60,7 +63,7 @@ function Board({ xIsNext, squares, onPlay }) {
 
   Board.propTypes = {
     xIsNext: PropTypes.bool,
-    squares: PropTypes.arrayOf([PropTypes.string]),
+    squares: PropTypes.arrayOf(PropTypes.string),
     onPlay: PropTypes.func,
   };
 
@@ -73,7 +76,11 @@ function Board({ xIsNext, squares, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = `Winner: ${winner}`;
+    if (winner === 'Draw') {
+      status = winner;
+    } else {
+      status = `Winner: ${winner}`;
+    }
   } else {
     status = `Next player: ${xIsNext ? 'X' : 'O'}`;
   }

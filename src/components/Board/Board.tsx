@@ -1,11 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Square from '../Square/Square';
 import calculateWinner from '../../services/gameCore';
 import './style.css';
 
-export default function Board({ xIsNext, squares, onPlay }) {
-  function handleClick(i) {
+export default function Board({ xIsNext, squares, onPlay }: { xIsNext: boolean; squares: Array<string>; onPlay: Function }) {
+  function handleClick(i: number) {
     if (squares[i] || calculateWinner(squares)) {
       return;
     }
@@ -17,18 +15,6 @@ export default function Board({ xIsNext, squares, onPlay }) {
     }
     onPlay(nextSquares);
   }
-
-  Board.propTypes = {
-    xIsNext: PropTypes.bool,
-    squares: PropTypes.arrayOf(PropTypes.string),
-    onPlay: PropTypes.func,
-  };
-
-  Board.defaultProps = {
-    xIsNext: '',
-    squares: '',
-    onPlay: '',
-  };
 
   const winner = calculateWinner(squares);
   let status;

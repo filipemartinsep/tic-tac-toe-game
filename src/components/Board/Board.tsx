@@ -2,7 +2,13 @@ import Square from '../Square/Square';
 import calculateWinner from '../../services/gameCore';
 import './style.css';
 
-export default function Board({ xIsNext, squares, onPlay }: { xIsNext: boolean; squares: Array<string>; onPlay: Function }) {
+interface Props {
+  xIsNext: boolean;
+  squares: Array<'X' | 'O' | null>;
+  onPlay: Function;
+}
+
+export default function Board({ xIsNext, squares, onPlay }: Props) {
   function handleClick(i: number) {
     if (squares[i] || calculateWinner(squares)) {
       return;

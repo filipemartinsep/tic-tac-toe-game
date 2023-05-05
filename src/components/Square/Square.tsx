@@ -1,7 +1,12 @@
 import { MouseEventHandler } from 'react';
 import './style.css';
 
-export default function Square({ value, onSquareClick }: {value: string; onSquareClick: MouseEventHandler<HTMLButtonElement>}) {
+interface Props {
+  value: 'X' | 'O' | null;
+  onSquareClick: MouseEventHandler<HTMLButtonElement>;
+}
+
+export default function Square({ value, onSquareClick }: Props) {
   return (
     <button
       type="button"
